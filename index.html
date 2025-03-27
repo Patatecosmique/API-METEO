@@ -1,23 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <script defer src="./JS/script.js"></script>
-    <title>Instant Weather</title>
+    <!-- lien pour le javascript -->
+    <script src="./JS/script.js"></script>
+    <!-- lien pour le css -->
+    <link rel="stylesheet" href="./CSS/style.css">
+    <title>Météo local</title>
 </head>
+
 <body>
-    <header>
-        <h1>Obtenez instantanemant les informations méteo de votre ville !</h1>
+    <header class="container">
+        <h1>Météo de votre Région</h1>
     </header>
-    <main>
-        <h1>La météo de votre département :</h1>
-        <form>
-            <label for="code_postal" > </label>
-            <input type="number" maxlength="5" id="code_postal" placeholder="Entrez votre code postal" pattern="[0-9]{5}">
-            <button id="validate">valider</button>
-        </form>
+
+    <main class="weather-container">
+        <section>
+            <h2>Trouvez les informations météo de votre région</h2>
+            <form>
+                <div>
+                    <input type="number" id="postal-code" placeholder="Entrez votre code postal" maxlength="5" pattern="\d{5}" required>
+                    <button type="submit" id="search-btn">Rechercher</button>
+                </div>
+            </form>
+        </section>
+
     </main>
+
+    <div>
+        <!-- resultat de la recherche -->
+    </div>
+
 </body>
+
 </html>
