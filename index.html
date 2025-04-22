@@ -1,38 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- lien pour le javascript -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Météo par Code Postal</title>
+    <link rel="stylesheet" href="./css/style.css" />
     <script src="./JS/script.js"></script>
-    <!-- lien pour le css -->
-    <link rel="stylesheet" href="./CSS/style.css">
-    <title>Météo local</title>
 </head>
 
 <body>
-    <header class="container">
-        <h1>Météo de votre Région</h1>
-    </header>
 
-    <main class="weather-container">
-        <section>
-            <h2>Trouvez les informations météo de votre région</h2>
-            <form>
-                <div>
-                    <input type="number" id="postal-code" placeholder="Entrez votre code postal" maxlength="5" pattern="\d{5}" required>
-                    <button type="submit" id="search-btn">Rechercher</button>
-                </div>
-            </form>
-        </section>
+    <main role="main">
+        <h1 id="page-title">Météo par Code Postal</h1>
 
+        <form aria-labelledby="page-title" onsubmit="event.preventDefault(); getWeather();" role="search">
+            <label for="zipcode">Code postal :</label>
+            <input type="text" id="zipcode" name="zipcode" required aria-required="true" pattern="[0-9]{5}"
+                inputmode="numeric" aria-describedby="zipcode-help" />
+            <small id="zipcode-help">Entrez un code postal français à 5 chiffres (ex : 75001).</small>
+            <button type="submit">Obtenir la météo</button>
+        </form>
+
+        <section id="result" class="result" aria-live="polite"></section>
     </main>
-
-    <div>
-        <!-- resultat de la recherche -->
-    </div>
-
-</body>
 
 </html>

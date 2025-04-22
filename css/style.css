@@ -1,83 +1,135 @@
-/* Reset de base pour une mise en page cohérente */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+:root {
+    --blue: #007BFF;
+    --dark-blue: #0056b3;
+    --text-color: #212529;
+    --bg-color: #f0f4f8;
+    --white: #ffffff;
+
+    --bg-dark: #121212;
+    --text-dark: #f0f0f0;
+    --surface-dark: #1e1e1e;
+    --input-dark: #2b2b2b;
+    --border-dark: #444;
 }
 
-/* Style du corps de la page */
+[data-theme="dark"] body {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+}
+
+[data-theme="dark"] main {
+    background-color: var(--surface-dark);
+    color: var(--text-dark);
+}
+
+[data-theme="dark"] input[type="text"] {
+    background-color: var(--input-dark);
+    color: var(--text-dark);
+    border: 1px solid var(--border-dark);
+}
+
+[data-theme="dark"] button {
+    background-color: var(--blue);
+    color: var(--white);
+}
+
+[data-theme="dark"] small,
+[data-theme="dark"] label,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2 {
+    color: var(--text-dark);
+}
+
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    color: #333;
+    font-family: "Arial", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 2rem;
     line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
+    transition: background 0.3s, color 0.3s;
 }
 
-/* Style de l'en-tête */
-.container {
-    width: 100%;
-    max-width: 500px;
+main {
+    max-width: 700px;
+    margin: auto;
+    background: var(--white);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s;
+}
+
+h1 {
     text-align: center;
-    margin-bottom: 20px;
-}
-
-.container h1 {
-    color: #2c3e50;
     font-size: 1.8rem;
 }
 
-/* Conteneur principal de météo */
-.weather-container {
-    width: 100%;
-    max-width: 500px;
-    background-color: white;
-    padding: 40px;
-    border-radius: 14px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-/* Style du titre de section */
-.weather-container h2 {
-    color: #3498db;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-/* Mise en page du formulaire */
-.weather-container form > div {
+form {
     display: flex;
-    gap: 10px;
+    flex-direction: column;
+    gap: 1rem;
 }
 
-/* Style du champ de saisie */
-#postal-code {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    outline: none;
-    transition: border-color 0.3s;
+label {
+    font-weight: bold;
 }
 
-#postal-code:focus {
-    border-color: #3498db;
+input[type="text"] {
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
 
-/* Style du bouton de recherche */
-#search-btn {
-    background-color: #3498db;
-    color: white;
+button {
+    padding: 0.75rem;
+    font-size: 1rem;
+    background-color: var(--blue);
+    color: var(--white);
     border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.s;
 }
 
-#search-btn:hover {
-    background-color: #2980b9;
+button:hover,
+button:focus {
+    background-color: var(--dark-blue);
+}
+
+.result {
+    margin-top: 2rem;
+}
+
+.theme-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+.theme-toggle button {
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    color: inherit;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    body {
+        padding: 1rem;
+    }
+
+    main {
+        padding: 1.5rem;
+    }
+}
+
+input:focus,
+button:focus {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
 }
