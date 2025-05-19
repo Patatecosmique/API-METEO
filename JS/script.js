@@ -36,6 +36,145 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
+// Fonction pour obtenir l'URL de l'icône météo basée sur le code de condition météo
+function getWeatherIconUrl(weatherCode) {
+    // URLs de base pour les icônes météo
+    const baseUrl = "https://openweathermap.org/img/wn/";
+    
+    // Mapper les codes météo de Météo Concept vers les codes d'icônes OpenWeatherMap
+    // Documentation des codes Météo Concept: https://api.meteo-concept.com/documentation#code-weather
+    const iconMap = {
+        0: "01d", // Soleil
+        1: "02d", // Peu nuageux
+        2: "03d", // Ciel voilé
+        3: "04d", // Nuageux
+        4: "04d", // Très nuageux
+        5: "09d", // Couvert
+        6: "09d", // Brouillard
+        7: "09d", // Brouillard givrant
+        10: "10d", // Pluie faible
+        11: "09d", // Pluie modérée
+        12: "09d", // Pluie forte
+        13: "13d", // Neige faible
+        14: "13d", // Neige modérée
+        15: "13d", // Neige forte
+        16: "13d", // Grêle
+        20: "11d", // Averses de pluie locales et faibles
+        21: "11d", // Averses de pluie locales
+        22: "11d", // Averses locales et fortes
+        30: "11d", // Averses de neige localisées et faibles
+        31: "13d", // Averses de neige localisées
+        32: "13d", // Averses de neige localisées et fortes
+        40: "09d", // Orages locaux et faibles
+        41: "11d", // Orages locaux
+        42: "11d", // Orages locaux et forts
+        43: "11d", // Orages locaux et forts
+        44: "11d", // Orages locaux et forts
+        45: "11d", // Orages locaux et forts
+        46: "11d", // Orages locaux et forts
+        47: "11d", // Orages locaux et forts
+        48: "11d", // Orages locaux et forts
+        60: "13d", // Averses de neige faibles
+        61: "13d", // Averses de neige
+        62: "13d", // Averses de neige fortes
+        63: "13d", // Averses de neige fortes
+        64: "13d", // Averses de neige fortes
+        65: "13d", // Averses de neige fortes
+        66: "13d", // Averses de neige fortes
+        67: "13d", // Averses de neige fortes
+        68: "13d", // Averses de neige fortes
+        70: "13d", // Averses de neige faibles
+        71: "13d", // Averses de neige
+        72: "13d", // Averses de neige fortes
+        73: "13d", // Averses de neige fortes
+        74: "13d", // Averses de neige fortes
+        75: "13d", // Averses de neige fortes
+        76: "13d", // Averses de neige fortes
+        77: "13d", // Averses de neige fortes
+        78: "13d", // Averses de neige fortes
+        100: "01n", // Soleil (nuit)
+        101: "02n", // Peu nuageux (nuit)
+        102: "03n", // Ciel voilé (nuit)
+        103: "04n", // Nuageux (nuit)
+        104: "04n", // Très nuageux (nuit)
+        105: "09n", // Couvert (nuit)
+        106: "09n", // Brouillard (nuit)
+        107: "09n", // Brouillard givrant (nuit)
+        110: "10n", // Pluie faible (nuit)
+        111: "09n", // Pluie modérée (nuit)
+        112: "09n", // Pluie forte (nuit)
+        113: "13n", // Neige faible (nuit)
+        114: "13n", // Neige modérée (nuit)
+        115: "13n", // Neige forte (nuit)
+        116: "13n", // Grêle (nuit)
+        120: "11n", // Averses de pluie locales et faibles (nuit)
+        121: "11n", // Averses de pluie locales (nuit)
+        122: "11n", // Averses locales et fortes (nuit)
+        130: "11n", // Averses de neige localisées et faibles (nuit)
+        131: "13n", // Averses de neige localisées (nuit)
+        132: "13n", // Averses de neige localisées et fortes (nuit)
+        140: "09n", // Orages locaux et faibles (nuit)
+        141: "11n", // Orages locaux (nuit)
+        142: "11n", // Orages locaux et forts (nuit)
+    };
+    
+    // Obtenir le code d'icône correspondant ou utiliser une icône par défaut
+    const iconCode = iconMap[weatherCode] || "50d"; // 50d est l'icône brouillard par défaut
+    
+    // Construire l'URL complète
+    return `${baseUrl}${iconCode}@2x.png`;
+}
+
+// Fonction pour obtenir la description météo basée sur le code
+function getWeatherDescription(weatherCode) {
+    const descriptions = {
+        0: "Ensoleillé",
+        1: "Peu nuageux",
+        2: "Ciel voilé",
+        3: "Nuageux",
+        4: "Très nuageux",
+        5: "Couvert",
+        6: "Brouillard",
+        7: "Brouillard givrant",
+        10: "Pluie faible",
+        11: "Pluie modérée",
+        12: "Pluie forte",
+        13: "Neige faible",
+        14: "Neige modérée",
+        15: "Neige forte",
+        16: "Grêle",
+        20: "Averses de pluie faibles",
+        21: "Averses de pluie",
+        22: "Averses de pluie fortes",
+        30: "Averses de neige faibles",
+        31: "Averses de neige",
+        32: "Averses de neige fortes",
+        40: "Orages faibles",
+        41: "Orages",
+        42: "Orages forts",
+        100: "Nuit claire",
+        101: "Nuit peu nuageuse",
+        102: "Nuit avec ciel voilé",
+        103: "Nuit nuageuse",
+        104: "Nuit très nuageuse",
+        105: "Nuit couverte",
+        106: "Nuit avec brouillard",
+        107: "Nuit avec brouillard givrant",
+        110: "Nuit avec pluie faible",
+        111: "Nuit avec pluie modérée",
+        112: "Nuit avec pluie forte",
+        113: "Nuit avec neige faible",
+        114: "Nuit avec neige modérée",
+        115: "Nuit avec neige forte",
+        116: "Nuit avec grêle",
+        120: "Nuit avec averses de pluie faibles",
+        121: "Nuit avec averses de pluie",
+        122: "Nuit avec averses de pluie fortes",
+    };
+    
+    return descriptions[weatherCode] || "Conditions météo inconnues";
+}
+
 async function getWeather() {
     const zip = document.getElementById("zipcode").value.trim();
     const forecastDays = parseInt(document.getElementById("forecast-days").value);
@@ -143,9 +282,17 @@ function displayForecastCards(forecasts, showRain, showWind, showWindDir) {
         const formattedDate = dateFormatter.format(date);
         const capitalizedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
         
+        // Obtenir l'URL de l'icône météo et la description
+        const weatherIconUrl = getWeatherIconUrl(forecast.weather);
+        const weatherDescription = getWeatherDescription(forecast.weather);
+        
         let cardHTML = `
             <div class="weather-card">
                 <div class="weather-card-date">${capitalizedDate}</div>
+                <div class="weather-card-icon">
+                    <img src="${weatherIconUrl}" alt="${weatherDescription}" title="${weatherDescription}" class="weather-icon">
+                    <p class="weather-description">${weatherDescription}</p>
+                </div>
                 <div class="weather-card-temps">
                     <div class="weather-temp-min">
                         <span class="temp-icon">❄️</span>
